@@ -1,0 +1,18 @@
+services:
+  spotdl:
+    # image: spotdl/spotify-downloader:latest
+    # Use custom Spotdl container with Python 3.12 
+    build: ./.spotdl
+    container_name: spotdl-dev
+    # Command can be overridden later – for now we’ll just keep the container alive
+    entrypoint: [ "tail", "-f", "/dev/null" ]
+    volumes:
+      # Music output directory (local dev path)
+      - ./downloads:/music
+      # Optional: config/cache if you want persistence
+      - ./config:/root/.config/spotdl
+    environment:
+      # You can later add options here if needed
+      - PUID=1000
+      - PGID=1000
+    restart: unless-stopped
