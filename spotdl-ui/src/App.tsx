@@ -49,18 +49,22 @@ function App() {
     <div className="App">
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <p>Paste link to Spotify song/album/playlist to download</p>
+        <p>Paste link to Spotify song/album/playlist to download in MP3</p>
 
         <form className="ripper" onSubmit={handleSubmit}>
-          <input
-            type="text"
+          <textarea
+            className="spotify-url"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
+            placeholder="Paste your Spotify URL here my dude..."
+            rows={3}
           />
           <button type="submit" disabled={loading}>
-            {loading ? "Downloading..." : "Download"}
+            {loading ? "Ripping..." : "Rip it!"}
           </button>
         </form>
+
+        {status && <p className="status">{status}</p>}
       </header>
     </div>
   );

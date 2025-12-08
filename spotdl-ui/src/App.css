@@ -25,16 +25,22 @@
 
 .ripper {
   display: flex;
+  flex-direction: column;
   padding: 1rem;
   border: 1px solid #000;
+  gap:2rem;
   width: 75%;
 }
 
-input {
-  background: rgba(255,255,255,.25);
+.spotify-url {
+  background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #2662ed, #520787, #9400d3);
   flex: 1;
   font-size: 125%;
   padding: 1rem;
+}
+.spotify-url::placeholder {
+  color: #000;
+  text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.5);
 }
 button {
   font-size: 125%;
