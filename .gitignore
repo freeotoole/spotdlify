@@ -19,6 +19,9 @@ pnpm-debug.log*
 /build/
 /coverage/
 
+# Downloads
+downloads/
+
 # Editor & OS
 .DS_Store
 .idea/
@@ -26,3 +29,6 @@ pnpm-debug.log*
 
 # Temp
 .tmp/
+
+config/.spotipy
+config/errors/
