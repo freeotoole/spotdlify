@@ -29,7 +29,7 @@ app.post("/api/download", (req, res) => {
   }
 
   // Log for your own sanity
-  console.log(`[spotifarr] Download requested: ${url}`);
+  // console.log(`[spotifarr] Download requested: ${url}`);
 
   // Use spawn with args array to avoid shell injection
   const args = [

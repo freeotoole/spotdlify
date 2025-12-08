@@ -7,6 +7,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+
+
 # Install uv (the official installer)
 RUN curl -fsSL https://astral.sh/uv/install.sh | sh
 
@@ -15,8 +17,9 @@ ENV PATH="/root/.local/bin:${PATH}"
 
 # Pin spotDL for reproducibility
 ARG SPOTDL_VERSION=4.2.4
-RUN uv tool install --python 3.12 "spotdl==${SPOTDL_VERSION}" && \
-    spotdl --version
+
+RUN uv tool install --python ${PYTHON_VERSION} "spotdl@latest" \
+    && spotdl --version
 
 # Create a download directory
 RUN mkdir /music
