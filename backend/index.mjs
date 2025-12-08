@@ -30,17 +30,23 @@ app.post("/api/download", (req, res) => {
 
   // Log for your own sanity
   console.log(`[spotifarr] Download requested: ${url}`);
+  
+const theScript = `spotdl download ${url}`
 
   // Use spawn with args array to avoid shell injection
   const args = [
     "exec",
     SPOTDL_CONTAINER,
-    "spotdl",
-    "download",
-    url,
-    "--output",
+     "--output",
     OUTPUT_DIR,
+    // "spotdl",
+    // "download",
+    // url,
+    theScript
+   
   ];
+
+  console.log(`[spotifarr] Download script: ${args}`);
 
   const child = spawn("docker", args);
 
