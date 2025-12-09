@@ -1,14 +1,5 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 20vmin;
-  pointer-events: none;
-}
-
-
-.App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -17,32 +8,108 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: #ccc;
+  padding: var(--spacing-xl);
 }
 
-.App-link {
-  color: #61dafb;
+.App-logo {
+  height: 20vmin;
+  pointer-events: none;
 }
+
+[class^="container"] {
+  width: 100%;
+  max-width: var(--container-lg);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container-xl {
+  width: 100%;
+  max-width: var(--container-xl);
+}
+
+/* .App-link {
+  color: #61dafb;
+} */
 
 .ripper {
+  background: linear-gradient(
+    90deg,
+    #bfeff5 0% 14.28%,
+    #00a9e0 14.28% 28.56%,
+    #c9ef14 28.56% 42.84%,
+    #ffffff 42.84% 57.12%,
+    #ffc400 57.12% 71.4%,
+    #ff6f6f 71.4% 85.68%,
+    #ffc0d9 85.68% 100%
+  );
+  /* border: 0.5rem solid #fff; */
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-  border: 1px solid #000;
-  gap:2rem;
-  width: 75%;
+  padding: var(--spacing-xl);
+  gap: 2rem;
 }
 
 .spotify-url {
-  background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #2662ed, #520787, #9400d3);
+  background-color: rgba(255, 255, 255, 0.85);
   flex: 1;
-  font-size: 125%;
+  font-size: var(--font-size-xl);
   padding: 1rem;
 }
 .spotify-url::placeholder {
   color: #000;
-  text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.5);
+  text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.5);
 }
 button {
-  font-size: 125%;
+  background-color: #5bcefa;
+  border-radius: 1rem;
+  font-size: var(--font-size-xl);
   padding: 1rem;
+}
+
+.logs-section {
+  background: rgba(0, 0, 0, 0.2);
+  margin-top: 4rem;
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-xl);
+  width: 100%;
+}
+
+ul.logs {
+  text-align: left;
+  background: #333;
+  margin: 0;
+  padding: 0;
+}
+
+ul.logs > li {
+  color: #aeaebc;
+  list-style-type: none;
+  margin: 0;
+  padding: 0.5rem var(--spacing-md);
+  display: block;
+  white-space: pre-wrap;
+  font-family: monospace;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-bottom-color: transparent;
+}
+
+ul.logs > li:first-of-type {
+  border-top-color: transparent;
+}
+
+ul.logs > li:last-of-type {
+  color: white;
+  border-image: linear-gradient(
+      to right,
+      #bfeff5,
+      #00a9e0,
+      #c9ef14,
+      #ffffff,
+      #ffc400,
+      #ff6f6f,
+      #ffc0d9
+    )
+    1 stretch;
 }
