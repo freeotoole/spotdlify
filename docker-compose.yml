@@ -1,7 +1,9 @@
+version: '3.8'
+
 services:
   spotdl:
     # image: spotdl/spotify-downloader:latest
-    # Use custom Spotdl container with Python 3.12 
+    # Use custom Spotdl container with Python 3.12
     build: ./.spotdl
     container_name: spotdl-dev
     # Command can be overridden later – for now we’ll just keep the container alive
@@ -16,3 +18,30 @@ services:
       - PUID=1000
       - PGID=1000
     restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: spotifarr-backend
+    environment:
+      - PORT=4000
+      - SPOTDL_CONTAINER=spotdl-dev
+    restart: unless-stopped
+    expose:
+      - "4000"
+    depends_on:
+      - spotdl
+
+  frontend:
+    build: ./spotdl-ui
+    container_name: spotifarr-frontend
+    restart: unless-stopped
+    # Map host port 8080 to container port 80 to avoid colliding with host web services
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+networks:
+  default:
+    name: spotdlify-network
+  # (The spotdl service was defined above - trimmed duplicate block)
