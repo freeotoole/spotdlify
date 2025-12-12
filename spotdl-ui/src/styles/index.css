@@ -1,0 +1,106 @@
+/* Lets use css vars for spacing etc */
+:root {
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --border-radius: 0.5rem;
+  --container-sm: 576px;
+  --container-md: 768px;
+  --container-lg: 980px;
+  --container-xl: 1280px;
+  /* Fonts */
+  --font-size-sm: 0.75rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  /* Colours */
+  --color-primary: #61dafb;
+  --color-grey-900: #20232a;
+  --color-grey-800: #282c34;
+  --color-grey-700: #3a3f4b;
+  --color-grey-600: #7a7e88;
+  --color-spotify: #1db954;
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 2.5rem;
+    --font-size-sm: 0.85rem;
+    --font-size-md: 1.1rem;
+    --font-size-lg: 1.5rem;
+    --font-size-xl: 1.75rem;
+  }
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* Util classes */
+
+.container {
+  width: 100%;
+  max-width: var(--container-lg);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container-xl {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flex {
+  display: flex;
+  gap: var(--spacing-md);
+}
+.flex.column {
+  flex-direction: column;
+}
+.flex.gap-sm {
+  gap: var(--spacing-sm);
+}
+.flex.gap-md {
+  gap: var(--spacing-md);
+}
+.flex.gap-lg {
+  gap: var(--spacing-lg);
+}
+.flex.gap-xl {
+  gap: var(--spacing-xl);
+}
+
+.font-size-sm {
+  font-size: var(--font-size-sm);
+}
+.font-size-md {
+  font-size: var(--font-size-md);
+}
+.font-size-lg {
+  font-size: var(--font-size-lg);
+}
+.font-size-xl {
+  font-size: var(--font-size-xl);
+}
+
+svg.icon {
+  width: 2em;
+  height: 2em;
+  vertical-align: middle;
+  fill: currentColor;
+}
