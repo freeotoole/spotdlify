@@ -73,7 +73,7 @@ textarea::placeholder {
 
 /* Buttons */
 
-button {
+button[type="submit"] {
   background-color: white;
   /* background-color: var(--color-grey-600); */
   /* color: white; */
@@ -118,54 +118,4 @@ button::-moz-focus-inner {
 
 button:-moz-focusring {
   outline: 1px dotted ButtonText;
-}
-
-.logs-section {
-  background: var(--color-grey-900);
-  margin-top: var(--spacing-xl);
-  font-size: var(--font-size-sm);
-  padding: var(--spacing-xl);
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-}
-
-ul.logs {
-  text-align: left;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-ul.logs > li {
-  color: #aeaebc;
-  list-style-type: none;
-  margin: 0;
-  padding: 0.5rem var(--spacing-md);
-  display: block;
-  white-space: pre-wrap;
-  font-family: monospace;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-  border-bottom-color: transparent;
-}
-
-ul.logs > li:first-of-type {
-  border-top-color: transparent;
-}
-
-ul.logs > li:last-of-type {
-  color: white;
-  border-image: linear-gradient(
-      to right,
-      #bfeff5,
-      #00a9e0,
-      #c9ef14,
-      #ffffff,
-      #ffc400,
-      #ff6f6f,
-      #ffc0d9
-    )
-    1 stretch;
 }
