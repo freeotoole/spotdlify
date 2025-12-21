@@ -49,6 +49,13 @@ code {
     monospace;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-weight: bold;
+}
+
 /* Util classes */
 
 .container {
@@ -96,11 +103,4 @@ code {
 }
 .font-size-xl {
   font-size: var(--font-size-xl);
-}
-
-svg.icon {
-  width: 2em;
-  height: 2em;
-  vertical-align: middle;
-  fill: currentColor;
 }

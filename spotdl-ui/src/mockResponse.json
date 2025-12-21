@@ -1,0 +1,42 @@
+{
+  "lines": [
+    {
+      "stream": "stdout",
+      "text": "Processing query:                                                               \nhttps://open.spotify.com/playlist/6fjOnyqUZ6foGNVY8Ye0yQ?si=6fb1eaeb256c4532    \n"
+    },
+    {
+      "stream": "stdout",
+      "text": "Found 5 songs in Dubstep (Playlist)                                             \n"
+    },
+    {
+      "stream": "stdout",
+      "text": "Skipping Excision - Existence - VIP (file already exists) (duplicate)           \n"
+    },
+    {
+      "stream": "stdout",
+      "text": "Skipping Excision - Not Enough (file already exists) (duplicate)                \n"
+    },
+    {
+      "stream": "stdout",
+      "text": "Skipping Excision - Blue Steel (file already exists) (duplicate)                \n"
+    },
+    {
+      "stream": "stdout",
+      "text": "Skipping Excision - 2005 (file already exists) (duplicate)                      \n"
+    },
+    {
+      "stream": "stdout",
+      "text": "Skipping Excision - Bonebreaker (file already exists) (duplicate)               \n"
+    },
+    {
+      "stream": "stdout",
+      "text": "\n"
+    },
+    {
+      "stream": "meta",
+      "text": "Finished: {'success':true,'code':0,'url':'https://open.spotify.com/playlist/6fjOnyqUZ6foGNVY8Ye0yQ?si=6fb1eaeb256c4532'}"
+    }
+  ],
+  "finished": true,
+  "error": null
+}

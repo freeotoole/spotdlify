@@ -1,44 +1,25 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { useLogs } from "./hooks/useLogs";
 
-import { ReactComponent as SpotifyIcon } from "./assets/icons/spotify-brands-solid-full.svg";
-import { ReactComponent as PooIcon } from "./assets/icons/poo-solid-full.svg";
-import { ReactComponent as BombIcon } from "./assets/icons/bomb-solid-full.svg";
-import { ReactComponent as SkullIcon } from "./assets/icons/skull-solid-full.svg";
+import Form from "./components/Form";
+import Logger from "./components/Logger";
+
+import mockResponse from "./mockResponse.json";
 
 function App() {
-  const [url, setUrl] = useState("");
   const [status, setStatus] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
 
-  const containerRef = useRef<HTMLUListElement | null>(null);
-
+  let { lines, finished, error } = useLogs(sessionId);
   // const { lines, finished, error } = mockResponse;
-  const { lines, finished, error } = useLogs(sessionId);
 
+  // const [hasSession, setHasSession] = useState(false);
   // create array of icons to randomly choose from
-  const icons = [
-    <PooIcon className="icon" />,
-    <BombIcon className="icon" />,
-    <SkullIcon className="icon" />,
-  ];
-
-  const iconColours = ["#53410e", "black", "white"];
-  const switchIcon = () => {
-    // change to a random icon index
-    let newIndex = Math.floor(Math.random() * icons.length);
-    while (newIndex === iconIndex) {
-      newIndex = Math.floor(Math.random() * icons.length);
-    }
-    setIconIndex(newIndex);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!url.trim()) return;
-
+  // start a download for the given Spotify URL (called from <Form />)
+  const handleStart = async (url: string) => {
+    if (!url || !url.trim()) return;
     setLoading(true);
     setStatus(null);
     setSessionId(null);
@@ -54,29 +35,20 @@ function App() {
       console.log("[App] download response", res.status, data);
 
       if (res.status === 202 && data.id) {
-        // setStatus("🏴‍☠️ Hacking the narr...");
+        setStatus("Streaming logs...");
         setSessionId(data.id);
-        // also log and surface the id so we can debug
         console.log("[App] got session id", data.id);
       } else if (!res.ok) {
         setStatus(`Error: ${data.error || data.status}`);
       } else {
-        // fallback: older backend responses
-        console.log("Status: Download finished");
         setStatus("Download finished");
       }
     } catch (err: any) {
       setStatus("Request failed");
     } finally {
-      // setLoading(false);
-      console.log("Status: All done yo");
-      switchIcon();
+      setLoading(false);
     }
   };
-
-  // useEffect(() => {
-  //   console.log({ lines, finished, error });
-  // }, [lines, finished, error]);
 
   // auto-scroll to bottom when new logs arrive
   // useEffect(() => {
@@ -86,7 +58,12 @@ function App() {
   //   }
   // }, [lines]);
 
-  const [iconIndex, setIconIndex] = useState(0);
+  // const mockIt = () => {
+  //   setSessionId("cba6df64-dd7e-48a3-9b0d-8482674f2792");
+  //   lines = mockResponse.lines;
+  //   finished = mockResponse.finished;
+  //   error = mockResponse.error;
+  // };
 
   const bbMessages = {
     loading: "Processing your request...",
@@ -96,65 +73,16 @@ function App() {
 
   return (
     <div className="App">
-      <div className="container flex column gap-xl">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <h1>Paste link to Spotify song/album/playlist to download in MP3</h1>
-
-        <form className="form-backdrop" onSubmit={handleSubmit}>
-          <textarea
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            placeholder="Paste your Spotify URL here my dude..."
-            rows={3}
-          />
-          <p className="button-wrapper">
-            <button
-              type="submit"
-              disabled={loading}
-              className={loading ? "gay" : ""}
-            >
-              <span className="button-text">
-                {loading ? "Ripping..." : "RIP IT!"}
-              </span>
-              <span
-                className="button-icon"
-                style={{
-                  color: loading
-                    ? iconColours[iconIndex]
-                    : "var(--color-spotify)",
-                }}
-              >
-                {!loading ? (
-                  <SpotifyIcon
-                    className="icon"
-                    style={{
-                      fill: "var(--color-spotify)",
-                    }}
-                  />
-                ) : (
-                  icons[iconIndex]
-                )}
-              </span>
-            </button>
-          </p>
-        </form>
-        {/* TODO: add the ripping, finished etc messaging */}
-      </div>
-      <section className="logs-section">
-        <div className="container-xl">
-          {loading && <p>{bbMessages.loading}</p>}
-          {sessionId && (
-            <ul className="logs" ref={containerRef} style={{}}>
-              {lines
-                .filter((l) => l.stream === "stdout" && l.text.trim())
-                .map((l, i) => (
-                  <li key={i}>{l.text}</li>
-                ))}
-            </ul>
-          )}
-          {error && <div style={{ color: "tomato" }}>{error}</div>}
-        </div>
-      </section>
+      {!sessionId ? (
+        <Form onSubmit={handleStart} loading={loading} />
+      ) : (
+        <Logger
+          lines={lines}
+          finished={finished}
+          error={error}
+          setSessionId={setSessionId}
+        />
+      )}
     </div>
   );
 }

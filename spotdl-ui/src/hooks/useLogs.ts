@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-type Line = { stream: string; text: string };
+export type Line = { stream: string; text: string };
 
 export function useLogs(sessionId: string | null) {
   const [lines, setLines] = useState<Line[]>([]);
