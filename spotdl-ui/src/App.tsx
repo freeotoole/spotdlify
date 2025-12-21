@@ -12,10 +12,10 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
 
-  const { lines, finished, error } = useLogs(sessionId);
+  let { lines, finished, error } = useLogs(sessionId);
   // const { lines, finished, error } = mockResponse;
 
-  const [hasSession, setHasSession] = useState(false);
+  // const [hasSession, setHasSession] = useState(false);
   // create array of icons to randomly choose from
   // start a download for the given Spotify URL (called from <Form />)
   const handleStart = async (url: string) => {
@@ -58,6 +58,13 @@ function App() {
   //   }
   // }, [lines]);
 
+  // const mockIt = () => {
+  //   setSessionId("cba6df64-dd7e-48a3-9b0d-8482674f2792");
+  //   lines = mockResponse.lines;
+  //   finished = mockResponse.finished;
+  //   error = mockResponse.error;
+  // };
+
   const bbMessages = {
     loading: "Processing your request...",
     finished: "All done! Check your downloads folder.",
@@ -66,28 +73,16 @@ function App() {
 
   return (
     <div className="App">
-      {!hasSession ? (
-        <section className="container flex column gap-xl">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
-          <h1>Paste link to Spotify song/album/playlist to download in MP3</h1>
-
-          <Form onSubmit={handleStart} loading={loading} />
-          {/* TODO: add the ripping, finished etc messaging */}
-        </section>
+      {!sessionId ? (
+        <Form onSubmit={handleStart} loading={loading} />
       ) : (
-        <Logger lines={lines} finished={finished} error={error} />
+        <Logger
+          lines={lines}
+          finished={finished}
+          error={error}
+          setSessionId={setSessionId}
+        />
       )}
-      <div>
-        <button
-          style={{ marginTop: "var(--spacing-md)" }}
-          onClick={() => {
-            setHasSession(!hasSession);
-            // setSessionId(null);
-          }}
-        >
-          <span className="button-text">{hasSession ? "Reset" : "Mock"}</span>
-        </button>
-      </div>
     </div>
   );
 }

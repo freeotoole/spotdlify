@@ -17,14 +17,23 @@ export default function Form({ onSubmit, loading }: Props) {
   };
 
   return (
-    <form className="form-backdrop" onSubmit={handleSubmit}>
-      <textarea
-        className="spotify-url"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        placeholder="Paste your Spotify URL here my dude..."
-        rows={3}
-      />
+    <section className="downloader">
+      <form className="form-backdrop" onSubmit={handleSubmit}>
+        <h1>Tune Hunter</h1>
+        <textarea
+          className="spotify-url"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Paste your Spotify URL here my dude..."
+          rows={3}
+          // submit on enter
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              handleSubmit(e);
+            }
+          }}
+        />
+      </form>
       <div className="button-wrapper">
         <button
           type="submit"
@@ -39,6 +48,6 @@ export default function Form({ onSubmit, loading }: Props) {
           </span>
         </button>
       </div>
-    </form>
+    </section>
   );
 }

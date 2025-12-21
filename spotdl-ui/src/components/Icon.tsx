@@ -1,6 +1,5 @@
 import React from "react";
 
-import { ReactComponent as IceCream } from "../assets/icons/ice-cream.svg";
 import { ReactComponent as ArrowsRotate } from "../assets/icons/arrows-rotate.svg";
 import { ReactComponent as Bomb } from "../assets/icons/bomb.svg";
 import { ReactComponent as BookSkull } from "../assets/icons/book-skull.svg";
@@ -19,7 +18,7 @@ import { ReactComponent as Hammer } from "../assets/icons/hammer.svg";
 import { ReactComponent as HandFist } from "../assets/icons/hand-fist.svg";
 import { ReactComponent as HandMiddleFinger } from "../assets/icons/hand-middle-finger.svg";
 import { ReactComponent as Headphones } from "../assets/icons/headphones.svg";
-import { ReactComponent as IceCreamAlt } from "../assets/icons/ice-cream.svg";
+import { ReactComponent as IceCream } from "../assets/icons/ice-cream.svg";
 import { ReactComponent as Lemon } from "../assets/icons/lemon.svg";
 import { ReactComponent as MartiniGlass } from "../assets/icons/martini-glass.svg";
 import { ReactComponent as MasksTheater } from "../assets/icons/masks-theater.svg";
@@ -37,7 +36,7 @@ import { ReactComponent as TruckMonster } from "../assets/icons/truck-monster.sv
 import { ReactComponent as UserSecret } from "../assets/icons/user-secret.svg";
 import { ReactComponent as Utensils } from "../assets/icons/utensils.svg";
 
-const icons = {
+export const icons = {
   "arrow-rotate-right": ArrowsRotate,
   "arrows-rotate": ArrowsRotate,
   bomb: Bomb,
@@ -57,7 +56,7 @@ const icons = {
   "hand-fist": HandFist,
   "hand-middle-finger": HandMiddleFinger,
   headphones: Headphones,
-  "ice-cream": IceCreamAlt,
+  "ice-cream": IceCream,
   lemon: Lemon,
   "martini-glass": MartiniGlass,
   "masks-theater": MasksTheater,
@@ -76,7 +75,10 @@ const icons = {
   utensils: Utensils,
 } as const;
 
-export type IconName = keyof typeof icons;
+type SvgComponent = React.FC<React.SVGProps<SVGSVGElement>>;
+
+// Narrow IconName to string literal union (exclude symbol/number from keyof)
+export type IconName = Extract<keyof typeof icons, string>;
 
 interface Props extends React.SVGProps<SVGSVGElement> {
   name: IconName;
@@ -84,9 +86,9 @@ interface Props extends React.SVGProps<SVGSVGElement> {
 }
 
 export default function Icon({ name, fill, size, ...rest }: Props) {
-  const Svg = icons[name];
+  const Svg = icons[name] as SvgComponent;
   const sizes = {
-    sm: "1em",
+    sm: "1.4em",
     md: "2em",
     lg: "3em",
   };
