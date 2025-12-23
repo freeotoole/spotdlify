@@ -1,23 +1,57 @@
 :root {
+  /* Rainbow flag colors (left-to-right): Red, Orange, Yellow, Green, Indigo, Violet */
   --background-flag: linear-gradient(
     90deg,
-    #bfeff5 0% 14.28%,
-    #00a9e0 14.28% 28.56%,
-    #c9ef14 28.56% 42.84%,
-    #ffffff 42.84% 57.12%,
-    #ffc400 57.12% 71.4%,
-    #ff6f6f 71.4% 85.68%,
-    #ffc0d9 85.68% 100%
+    /* hard edges by repeating boundary percentages */ #e40303 0%,
+    #e40303 16.6667%,
+    #ff8c00 16.6667%,
+    #ff8c00 33.3334%,
+    #ffed00 33.3334%,
+    #ffed00 50%,
+    #008026 50%,
+    #008026 66.6667%,
+    #004cff 66.6667%,
+    #004cff 83.3334%,
+    #732982 83.3334%,
+    #732982 100%
   );
   --background-rainbow: linear-gradient(
     to right,
-    #bfeff5,
-    #00a9e0,
-    #c9ef14,
-    #ffffff,
-    #ffc400,
-    #ff6f6f,
-    #ffc0d9
+    #e40303,
+    #ff8c00,
+    #ffed00,
+    #008026,
+    #004cff,
+    #732982
+  );
+
+  --background-trans-flag: linear-gradient(
+    90deg,
+    /* hard edges by repeating boundary percentages */ #55cdfc 0%,
+    #55cdfc 20%,
+    #f7a8b8 20%,
+    #f7a8b8 40%,
+    #ffffff 40%,
+    #ffffff 60%,
+    #f7a8b8 60%,
+    #f7a8b8 80%,
+    #55cdfc 80%,
+    #55cdfc 100%
+  );
+
+  --background-trans-soft: linear-gradient(
+    90deg,
+    /* tighter bands with small soft transitions (not hard edges) */ #a3d9ff 0%,
+    #a3d9ff 16%,
+    rgba(163, 217, 255, 0.95) 19%,
+    rgba(247, 198, 208, 0.95) 21%,
+    #f7c6d0 34%,
+    #ffffff 38%,
+    #ffffff 62%,
+    #f7c6d0 66%,
+    rgba(247, 198, 208, 0.95) 78%,
+    rgba(163, 217, 255, 0.95) 81%,
+    #a3d9ff 100%
   );
 }
 
@@ -55,7 +89,8 @@
 }
 
 .form-backdrop {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 2rem;
   display: flex;
   flex-direction: column;
   /* border: 0.5rem solid #fff; */
@@ -106,10 +141,17 @@ button[type="submit"] {
 }
 
 button[type="submit"]:disabled {
-  background-color: var(--color-grey-700);
+  background: var(--color-grey-700);
   border-color: var(--color-grey-800);
   color: var(--color-grey-400);
   cursor: not-allowed;
+}
+button.gay {
+  background: var(--background-trans-flag);
+  color: black;
+}
+button.gay:hover {
+  background: var(--background-trans-soft);
 }
 
 .button-text {
@@ -127,19 +169,7 @@ button[type="submit"]:disabled {
   padding: 0;
   margin: 0;
 }
-button.gay {
-  background: linear-gradient(
-    45deg,
-    #bfeff5,
-    #00a9e0,
-    #c9ef14,
-    #ffffff,
-    #ffc400,
-    #ff6f6f,
-    #ffc0d9
-  );
-  color: black;
-}
+
 button.gay .button-icon {
   background: transparent;
   /* color: black; */
