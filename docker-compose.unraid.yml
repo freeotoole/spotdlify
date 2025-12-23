@@ -1,0 +1,16 @@
+services:
+  spotdl:
+    volumes:
+      - /mnt/user/YourShare/spotdl:/music
+      - /mnt/user/appdata/spotdlify/config:/root/.config/spotdl
+    environment:
+      - PUID=99
+      - PGID=100
+  backend:
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - SPOTDL_OUTPUT_DIR=/music
+  frontend:
+    ports:
+      - "13666:80"

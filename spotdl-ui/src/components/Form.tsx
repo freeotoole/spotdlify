@@ -47,7 +47,7 @@ export default function Form({ onSubmit, loading }: Props) {
   return (
     <section className="downloader">
       <form className="form-backdrop" onSubmit={handleSubmit}>
-        <h1>MP3 Hunter</h1>
+        <h1 style={{ color: "var(--color-grey-900)" }}>MP3 Hunter</h1>
         <textarea
           className="spotify-url"
           value={value}
@@ -67,6 +67,7 @@ export default function Form({ onSubmit, loading }: Props) {
         <button
           type="submit"
           disabled={disabled}
+          onClick={handleSubmit}
           className={!disabled ? "gay" : ""}
         >
           <span className="button-text">
