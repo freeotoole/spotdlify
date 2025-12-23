@@ -6,16 +6,12 @@
   flex-direction: column;
   align-self: stretch;
   justify-self: stretch;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* gap: var(--spacing-sm); */
   min-height: 100vh;
   position: relative;
 }
 
 .logs-section header {
   border-bottom: 1px solid var(--color-grey-600);
-  padding: var(--spacing-md) var(--spacing-xl);
   font-weight: bold;
   font-size: var(--font-size-lg);
   color: var(--color-grey-700);
@@ -26,23 +22,29 @@
   padding: var(--spacing-md) var(--spacing-xl);
   font-weight: bold;
   font-size: var(--font-size-md);
-  /* color: var(--color-grey-700); */
   margin-top: auto;
 }
 
 .logger-header {
-  /* display: grid;
-  grid-template-columns: auto 1fr 2rem; */
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-xl);
 }
 
 .logs {
   flex: 1;
+  padding: var(--spacing-md);
+}
 
-  /* margin-top: var(--spacing-sm); */
+@media screen and (min-width: 768px) {
+  .logs,
+  .logger-header {
+    max-width: var(--container-lg);
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .icon-scroller {
@@ -50,7 +52,6 @@
   gap: var(--spacing-sm);
   overflow-x: auto;
   padding: var(--spacing-sm);
-  /* add icons to start of array :D */
 }
 
 /* // remove scrollbar */
@@ -106,7 +107,7 @@ button.close-logs {
   color: #aeaebc;
   list-style-type: none;
   margin: 0;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--spacing-sm) 0;
   display: block;
   white-space: pre-wrap;
   font-family: monospace;

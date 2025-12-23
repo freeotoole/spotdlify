@@ -82,7 +82,7 @@ export default function Logger({
           </button>
         </div>
       </header>
-      <div className="logs" style={{ padding: "var(--spacing-md)" }}>
+      <div className="logs">
         <ul ref={containerRef} className="logger">
           {streamStdout.map((l, i) => (
             <li key={i}>{l.text}</li>
